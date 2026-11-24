@@ -1,18 +1,19 @@
 # Clip Me
 
-A free, browser-based video clipper for turning long videos into shareable moments.
+Free, browser-based video clipping. Upload a local video or import a direct public video file link, then preview and export a WebM clip.
 
-## What it does
+## Use the website
 
-- Upload a video from your device
-- Choose and preview a clip up to 90 seconds
-- Choose a vertical, square, or landscape layout
-- Export the clip as a WebM file
+Open [Clip Me](https://meltex2345.github.io/clip-me/), upload a video from your device or paste a direct public MP4, WebM, or MOV URL. Select the clip range and layout, then choose **Export my clip**.
 
-Your video is processed in your browser. No account is needed.
+YouTube, TikTok, and other watch-page links are not direct video files and are not supported. The link importer accepts public video files up to 500 MB. Editing stays in your browser; link imports pass through the importer service. The free server may sleep when idle, so its first import after a while can take about a minute.
 
-## Run it
+## Deploy the link importer
 
-Open `index.html` in a recent version of Chrome, Edge, or Firefox. For the hosted site, enable GitHub Pages in the repository settings after adding the site files.
+This repository includes `render.yaml` for a free Render web service. In Render, create a new Blueprint and connect this repository; Render reads the blueprint and creates the importer service. The expected service URL is `https://clip-me-import-meltex2345.onrender.com`.
 
-The GitHub Pages version supports video uploads from your device. Importing a video by URL requires the optional Node.js server and only works with direct public video-file links.
+The importer needs Node.js and uses only built-in modules. Its `/health` endpoint is used for deployment health checks. Set `ALLOWED_ORIGIN` to the public website origin if you change the GitHub Pages owner or repository.
+
+## Local development
+
+Install Node.js 18 or newer, then run `start-server.bat` from this folder. Open http://127.0.0.1:4173. To allow the production website when running a local importer, use the deployed importer URL configured in `index.html`.
