@@ -1,0 +1,8 @@
+{
+  "name": "clip-me-link-importer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Direct public video file importer for Clip Me",
+  "engines": { "node": ">=18" },
+  "scripts": { "start": "node server.js" }
+}
